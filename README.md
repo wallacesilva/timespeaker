@@ -25,6 +25,7 @@ For development
 - Configure github actions (or circleci)
 - Test i3 configs
 - When merge to `main` build and publish to PyPi (github actions)
+- Create a simples page documentation (readthedocs.org or github wiki)
 
 # Install
 
