@@ -18,6 +18,7 @@ For development
 # TODO
 
 - Update/Fix to PyPi (`pip install timespeaker`)
+- Move Makefile to Parent
 - Create tests
 - Configure lint
 - Configure github actions (or circleci)
