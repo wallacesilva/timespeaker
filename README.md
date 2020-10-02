@@ -19,6 +19,7 @@ For development
 
 - Update/Fix to PyPi (`pip install timespeaker`)
 - Move Makefile to Parent
+- Configure PULL_REQUESTS AND ISSUES template
 - Create tests
 - Configure lint
 - Configure github actions (or circleci)
