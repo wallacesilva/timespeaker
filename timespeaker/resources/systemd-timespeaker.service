@@ -1,0 +1,10 @@
+[Unit]
+Description=Announce the time every hour similar to Mac OS X. Say the Time using Google TTS or espeak.
+
+[Service]
+Type=simple
+# ExecStart=/usr/bin/timespeaker.py
+ExecStart=python3 -m timespeaker start
+
+[Install]
+WantedBy=multi-user.target
