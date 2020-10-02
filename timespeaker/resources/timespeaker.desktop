@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=TimeSpeaker
+Exec=python -m timespeaker start
+StartupNotify=false
+Terminal=false
