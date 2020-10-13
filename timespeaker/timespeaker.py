@@ -210,7 +210,10 @@ def cli():
 
 @cli.command("start")
 @click.option(
-    "--speaker", type=click.Choice(["gtts", "pyspeaker"]), help="Choose speaker to use."
+    "--speaker", default="pyttsx3", type=click.Choice(["gtts", "pyttsx3"]), help="Choose speaker to use."
+)
+@click.option(
+    "--player", default="mpv", help="Choose player command. Eg. mpv, vlc"
 )
 @click.option(
     "--path-folder",
@@ -218,11 +221,14 @@ def cli():
     help="Choose to store hour files. \n\nDefault: /tmp/timespeaker/",
 )
 @click.option("--debug", is_flag=True)
-def run_start(speaker, path_folder, debug):
+def run_start(speaker, player, path_folder, debug):
     """
     Startup TimeSpeaker
     """
-    return start_loop(speaker, path_folder, debug)
+    # TODO: Define global DEBUG
+    if debug:
+        print('Started at ', datetime.now())
+    return start_loop(speaker, player, path_folder, debug)
 
 
 @cli.command()
