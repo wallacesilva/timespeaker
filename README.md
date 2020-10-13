@@ -24,6 +24,8 @@ For development
 - Configure lint
 - Configure github actions (or circleci)
 - Test i3 configs
+- Add support to Cron
+- Use a global DEBUG
 - When merge to `main` build and publish to PyPi (github actions)
 
 # Install
