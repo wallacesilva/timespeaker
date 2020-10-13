@@ -241,9 +241,12 @@ def run_default(version):
 @cli.command("check")
 @click.argument(
     "speaker",
-    type=click.Choice(["gtts", "pyspeaker"]),
+    type=click.Choice(["gtts", "pyttsx3"]),
 )
-def check_requirements(speaker):
+@click.option(
+    "--player", default="mpv", help="Choose player command. Eg. mpv, vlc"
+)
+def check_requirements(speaker, player):
     """
     Check requirements to use TimeSpeaker
     """
@@ -257,7 +260,7 @@ def check_requirements(speaker):
         click.echo("Try install python -m pip install {}".format(speaker))
 
     if speaker_works:
-        playsound(hour_file_tmp)
+        play_sound(hour_file_tmp, player)
         click.echo(get_cli_txt_green("Works"))
     else:
         click.echo(get_cli_txt_red("Not works"))
