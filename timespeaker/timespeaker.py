@@ -144,15 +144,15 @@ def validate_period(name: str, time_now: datetime, last_time_run: datetime, debu
         return rules[name]
 
 
+def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
+    last_time_run = datetime.now().replace(hour=datetime.now().hour - 1)
+    Path(path_folder).mkdir(mode=0o755, parents=True, exist_ok=True)
+
     while True:
 
         time_now = time_now = datetime.now()
 
-        if (
-            time_now.minute == custom_minute
-            and time_now.second == 0
-            and last_hour_runned != time_now.hour
-        ):
+        if validate_period(name='5_min', time_now=time_now, last_time_run=last_time_run, debug=debug):
             hour = time_now.hour
 
             hour_speak = str(hour) + " hours" if hour > 1 else " hour"
@@ -168,32 +168,34 @@ def validate_period(name: str, time_now: datetime, last_time_run: datetime, debu
             # TODO: change to logging
             if debug:
                 click.echo("Playing audio file {}".format(hour_file_abspath))
-            playsound(hour_file_abspath)
+            play_sound(hour_file_abspath, player)
 
-            last_hour_runned = time_now.hour
+            last_time_run = time_now
 
+        # TODO: Abstract to a function
         # wait for next run
-        seconds_to_next = (
-            time_now.replace(hour=time_now.hour + 1, minute=custom_minute, second=0)
-            - time_now
-        )
-        if custom_minute:
-            seconds_to_next = time_now.replace(minute=custom_minute) - time_now
-        seconds_wait = seconds_to_next.seconds - 1
+        # seconds_to_next = (
+        #     time_now.replace(hour=time_now.hour + 1, minute=minute_check, second=0)
+        #     - time_now
+        # )
+        # if minute_check:
+        #     seconds_to_next = time_now.replace(minute=minute_check) - time_now
+        # seconds_wait = seconds_to_next.seconds - 1
 
-        # print("Time Now: {time_now}".format(time_now=time_now))
-        # print("Time Now Future: {custom_minute}".format(custom_minute=time_now.replace(minute=custom_minute)))
-        # print("Custom Minute: {custom_minute}".format(custom_minute=custom_minute))
+        # # print("Time Now: {time_now}".format(time_now=time_now))
+        # # print("Time Now Future: {minute_check}".format(minute_check=time_now.replace(minute=minute_check)))
+        # # print("Custom Minute: {minute_check}".format(minute_check=minute_check))
 
-        if seconds_wait > 1:
-            # TODO: change to logging
-            if debug:
-                click.echo(
-                    "Waiting {seconds_wait} seconds for next run...".format(
-                        seconds_wait=seconds_wait
-                    )
-                )
-            time.sleep(seconds_wait)
+        # if seconds_wait > 1:
+        #     # TODO: change to logging
+        #     if debug:
+        #         click.echo(
+        #             "Waiting {seconds_wait} seconds for next run...".format(
+        #                 seconds_wait=seconds_wait
+        #             )
+        #         )
+        #     time.sleep(seconds_wait)
+        time.sleep(1)
 
 
 """
