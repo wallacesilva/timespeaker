@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "timespeaker"
-version = "0.1.0"
+version = "0.1.1"
 description = "Announce the time every hour similar to Mac OS X. Say the Time using Google TTS or espeak."
 authors = ["Wallace Silva <contact@wallacesilva.com>"]
 license = "MIT License"
@@ -8,7 +8,7 @@ license = "MIT License"
 [tool.poetry.dependencies]
 python = "^3.6"
 gtts = "^2.1.1"
-playsound = "^1.2.2"
+pyttsx3 = "^2.90"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.6"
