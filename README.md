@@ -55,6 +55,14 @@ make configure-autostart
 make configure-i3
 ```
 
+## Cron
+
+Coming Soon
+
+```
+sudo make configure-cron
+```
+
 ## Systemd
 
 ```
@@ -71,6 +79,9 @@ sudo make remove-systemd
 make remove-autostart
 
 # i3
+# coming soon
+
+# Cron
 # coming soon
 ```
 
