@@ -128,9 +128,21 @@ def speaker_save(speaker: str, hour_speak: str, file, debug: bool = False):
     return False
 
 
-def start_loop(speaker: str, path_folder: str, debug: bool):
-    last_hour_runned = None
-    custom_minute = 0
+def validate_period(name: str, time_now: datetime, last_time_run: datetime, debug=False):
+    rules = {
+        'hour': time_now.minute == 0
+            and time_now.second == 0
+            and last_time_run.hour != time_now.hour,
+        'halfhour': time_now.minute in (0, 30) and time_now.second == 0,  # future
+        '5_min': (time_now.minute % 5 == 0) and time_now.second == 0,  # for debug
+    }
+
+    if debug:
+        print("Rule: {} | Rules: {} | Time: {}".format(name, rules, time_now))
+
+    if name in rules:
+        return rules[name]
+
 
     while True:
 
