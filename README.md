@@ -87,7 +87,7 @@ timespeaker start
 
 Custom command:
 ```
-python -m timespeaker start --speaker=pyspeaker --path-folder=/tmp/timespeaker/
+python -m timespeaker start --speaker=pyttsx3 --path-folder=/tmp/timespeaker/
 ```
 
 # Development
