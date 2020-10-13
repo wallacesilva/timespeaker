@@ -84,6 +84,10 @@ def print_success(msg):
     click.echo(get_cli_txt_green(msg))
 
 
+def play_sound(hour_file: str, player: str):
+    os.system('{} {}'.format(player, hour_file))
+
+
 def speaker_save(speaker: str, hour_speak: str, file, debug: bool = False):
     if speaker not in ["gtts", "pyttsx3"]:
         # TODO: change to logging
