@@ -31,7 +31,7 @@ clean-test:
 	rm -f .coverage
 
 install:
-	python3 setup.py install
+	poetry install
 
 configure-systemd:
 	sudo pip3 install timespeaker
@@ -64,7 +64,7 @@ tests:
 	@echo "configure tests with pytests"
 
 lint:
-	black .
+	poetry run black .
 
 release:
 	poetry build
