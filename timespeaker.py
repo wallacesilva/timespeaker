@@ -156,8 +156,11 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
 
         if validate_period(name="5_min", time_now=time_now, last_time_run=last_time_run, debug=debug):
             hour = time_now.hour
+            minute = time_now.minute
 
             hour_speak = str(hour) + " hours" if hour > 1 else " hour"
+            if minute > 0:
+                hour_speak = hour_speak + " and " + str(minute) + " minutes"
             hour_file = hour_speak.replace(" ", "_") + ".mp3"
             hour_file_abspath = os.path.join(path_folder, hour_file)
 
