@@ -26,16 +26,26 @@ __copyright__ = "Copyright 2020 Wallace Silva"
 CONSTANTS
 """
 PERIOD_ALLOWED = ("hour", "halfhour", "5_min")
-TIMESPEAKER_DEBUG = os.getenv('TIMESPEAKER_DEBUG', default=False)
-TIMESPEAKER_PERIOD = os.getenv('TIMESPEAKER_PERIOD', default="hour")
+TIMESPEAKER_DEBUG = os.getenv("TIMESPEAKER_DEBUG", default=False)
+TIMESPEAKER_PERIOD = os.getenv("TIMESPEAKER_PERIOD", default="hour")
 
 if TIMESPEAKER_PERIOD not in PERIOD_ALLOWED:
     TIMESPEAKER_PERIOD = "hour"
 
 if TIMESPEAKER_DEBUG is not False:
     boolean_default_values = {
-        "1": True, "true": True, "yes": True, "y": True, "on": True, "t": True,
-        "0": False, "false": False, "no": False, "n": False, "off": False, "f": False
+        "1": True,
+        "true": True,
+        "yes": True,
+        "y": True,
+        "on": True,
+        "t": True,
+        "0": False,
+        "false": False,
+        "no": False,
+        "n": False,
+        "off": False,
+        "f": False,
     }
     try:
         TIMESPEAKER_DEBUG = boolean_default_values[TIMESPEAKER_DEBUG]
@@ -170,7 +180,9 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
 
         time_now = time_now = datetime.now()
 
-        if validate_period(name=TIMESPEAKER_PERIOD, time_now=time_now, last_time_run=last_time_run, debug=debug):
+        if validate_period(
+            name=TIMESPEAKER_PERIOD, time_now=time_now, last_time_run=last_time_run, debug=debug
+        ):
             hour = time_now.hour
             minute = time_now.minute
 
