@@ -33,6 +33,9 @@ clean-test:
 install:
 	poetry install
 
+run-default:
+	poetry run python -m timespeaker start --speaker=gtts
+
 configure-systemd:
 	sudo pip3 install timespeaker
 	cp resources/systemd-timespeaker.service /lib/systemd/system/timespeaker.service
