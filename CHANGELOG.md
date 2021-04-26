@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.2
+
+- Add envvars to PERIOD and DEBUG
+- Add `make run-default` to Makefile for simple to run locally
+- Add minutes to the speaker 
+- Remove `timedelta`, no more used import
+- Update commands of Makefile to use poetry 
+- Update dependencies
+- Add `.vscode` to .gitignore 
+- Add configurations to `black` on pyproject
+- Add package configurations to `pyproject.toml`
+- Add pytest to dev dependencies
+- Update `README.md` 
+
 ## 0.1.1
 
 - Remove playsound from dependencies;

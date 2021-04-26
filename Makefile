@@ -31,7 +31,11 @@ clean-test:
 	rm -f .coverage
 
 install:
-	python3 setup.py install
+	poetry install
+	@echo "\e[0;92mIstall finished\e[0m"
+
+run-default:
+	poetry run python -m timespeaker start --speaker=gtts
 
 configure-systemd:
 	sudo pip3 install timespeaker
@@ -60,11 +64,12 @@ remove-autostart:
 remove-cron:
 	echo "Future remove configs to cron"
 
-tests:
-	@echo "configure tests with pytests"
+test:
+	poetry run pytest -sx
 
 lint:
-	black .
+	poetry run black .
+	@echo "\e[0;92mLinter (black) finished\e[0m"
 
 release:
 	poetry build

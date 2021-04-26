@@ -17,10 +17,11 @@ For development
 
 # TODO
 
+- Use python: [threading.Timer](https://docs.python.org/3/library/threading.html?highlight=timer#threading.Timer)
+- Create tests
 - Update/Fix to PyPi (`pip install timespeaker`)
 - Move Makefile to Parent
 - Configure PULL_REQUESTS AND ISSUES template
-- Create tests
 - Configure lint
 - Configure github actions (or circleci)
 - Test i3 configs
@@ -30,7 +31,7 @@ For development
 
 # Install
 
-## Default
+## Default (Working In Progress)
 
 ```
 pip install timespeaker
@@ -38,26 +39,27 @@ pip install timespeaker
 
 ## Local
 
-```
-virtualenv .venv 
+```bash
+# pyenv shell +3.6.0
+python -m venv .venv 
 make install
 ```
 
 # Configure
 
-## AutoStart
+## AutoStart (Working In Progress)
 
 ```
 make configure-autostart
 ```
 
-## i3
+## i3 (Working In Progress)
 
 ```
 make configure-i3
 ```
 
-## Cron
+## Cron (Working In Progress)
 
 Coming Soon
 
@@ -65,7 +67,7 @@ Coming Soon
 sudo make configure-cron
 ```
 
-## Systemd
+## Systemd (Working In Progress)
 
 ```
 sudo make configure-systemd
@@ -109,7 +111,8 @@ Using virtualenv:
 
 ```
 # create virtualenv
-virtualenv .venv [-p /path/to/python3.6+]
+# virtualenv .venv [-p /path/to/python3.6+] # require virtualenv
+python -m venv .venv
 
 # Enter virtualenv
 source .venv/bin/activate

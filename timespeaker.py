@@ -3,7 +3,7 @@
 import os
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 import click
@@ -25,6 +25,32 @@ __copyright__ = "Copyright 2020 Wallace Silva"
 """
 CONSTANTS
 """
+PERIOD_ALLOWED = ("hour", "halfhour", "5_min")
+TIMESPEAKER_DEBUG = os.getenv("TIMESPEAKER_DEBUG", default=False)
+TIMESPEAKER_PERIOD = os.getenv("TIMESPEAKER_PERIOD", default="hour")
+
+if TIMESPEAKER_PERIOD not in PERIOD_ALLOWED:
+    TIMESPEAKER_PERIOD = "hour"
+
+if TIMESPEAKER_DEBUG is not False:
+    boolean_default_values = {
+        "1": True,
+        "true": True,
+        "yes": True,
+        "y": True,
+        "on": True,
+        "t": True,
+        "0": False,
+        "false": False,
+        "no": False,
+        "n": False,
+        "off": False,
+        "f": False,
+    }
+    try:
+        TIMESPEAKER_DEBUG = boolean_default_values[TIMESPEAKER_DEBUG]
+    except KeyError:
+        TIMESPEAKER_DEBUG = False
 
 
 class BgColors:
@@ -85,7 +111,7 @@ def print_success(msg):
 
 
 def play_sound(hour_file: str, player: str):
-    os.system('{} {}'.format(player, hour_file))
+    os.system("{} {}".format(player, hour_file))
 
 
 def speaker_save(speaker: str, hour_speak: str, file, debug: bool = False):
@@ -134,11 +160,9 @@ def speaker_save(speaker: str, hour_speak: str, file, debug: bool = False):
 
 def validate_period(name: str, time_now: datetime, last_time_run: datetime, debug=False):
     rules = {
-        'hour': time_now.minute == 0
-            and time_now.second == 0
-            and last_time_run.hour != time_now.hour,
-        'halfhour': time_now.minute in (0, 30) and time_now.second == 0,  # future
-        '5_min': (time_now.minute % 5 == 0) and time_now.second == 0,  # for debug
+        "hour": time_now.minute == 0 and time_now.second == 0 and last_time_run.hour != time_now.hour,
+        "halfhour": time_now.minute in (0, 30) and time_now.second == 0,  # future
+        "5_min": (time_now.minute % 5 == 0) and time_now.second == 0,  # for debug
     }
 
     if debug:
@@ -156,10 +180,15 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
 
         time_now = time_now = datetime.now()
 
-        if validate_period(name='5_min', time_now=time_now, last_time_run=last_time_run, debug=debug):
+        if validate_period(
+            name=TIMESPEAKER_PERIOD, time_now=time_now, last_time_run=last_time_run, debug=debug
+        ):
             hour = time_now.hour
+            minute = time_now.minute
 
             hour_speak = str(hour) + " hours" if hour > 1 else " hour"
+            if minute > 0:
+                hour_speak = hour_speak + " and " + str(minute) + " minutes"
             hour_file = hour_speak.replace(" ", "_") + ".mp3"
             hour_file_abspath = os.path.join(path_folder, hour_file)
 
@@ -214,11 +243,12 @@ def cli():
 
 @cli.command("start")
 @click.option(
-    "--speaker", default="pyttsx3", type=click.Choice(["gtts", "pyttsx3"]), help="Choose speaker to use."
+    "--speaker",
+    default="pyttsx3",
+    type=click.Choice(["gtts", "pyttsx3"]),
+    help="Choose speaker to use.",
 )
-@click.option(
-    "--player", default="mpv", help="Choose player command. Eg. mpv, vlc"
-)
+@click.option("--player", default="mpv", help="Choose player command. Eg. mpv, vlc")
 @click.option(
     "--path-folder",
     default="/tmp/timespeaker/",
@@ -231,7 +261,7 @@ def run_start(speaker, player, path_folder, debug):
     """
     # TODO: Define global DEBUG
     if debug:
-        print('Started at ', datetime.now())
+        print("Started at ", datetime.now())
     return start_loop(speaker, player, path_folder, debug)
 
 
@@ -242,9 +272,7 @@ def run_default(version):
     Default command of TimeSpeaker
     """
     if version:
-        click.echo(
-            "{} version {} using python {}".format(__title__, __version__, sys.version)
-        )
+        click.echo("{} version {} using python {}".format(__title__, __version__, sys.version))
         return 0
 
 
@@ -253,9 +281,7 @@ def run_default(version):
     "speaker",
     type=click.Choice(["gtts", "pyttsx3"]),
 )
-@click.option(
-    "--player", default="mpv", help="Choose player command. Eg. mpv, vlc"
-)
+@click.option("--player", default="mpv", help="Choose player command. Eg. mpv, vlc")
 def check_requirements(speaker, player):
     """
     Check requirements to use TimeSpeaker
