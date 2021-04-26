@@ -32,6 +32,7 @@ clean-test:
 
 install:
 	poetry install
+	@echo "\e[0;92mIstall finished\e[0m"
 
 run-default:
 	poetry run python -m timespeaker start --speaker=gtts
@@ -68,6 +69,7 @@ test:
 
 lint:
 	poetry run black .
+	@echo "\e[0;92mLinter (black) finished\e[0m"
 
 release:
 	poetry build
