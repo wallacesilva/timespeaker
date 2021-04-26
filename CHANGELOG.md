@@ -11,6 +11,8 @@
 - Add `.vscode` to .gitignore 
 - Add configurations to `black` on pyproject
 - Add package configurations to `pyproject.toml`
+- Add pytest to dev dependencies
+- Update `README.md` 
 
 ## 0.1.1
 
