@@ -63,8 +63,8 @@ remove-autostart:
 remove-cron:
 	echo "Future remove configs to cron"
 
-tests:
-	@echo "configure tests with pytests"
+test:
+	poetry run pytest -sx
 
 lint:
 	poetry run black .
