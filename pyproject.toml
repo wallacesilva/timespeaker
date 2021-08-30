@@ -13,6 +13,9 @@ homepage = "https://github.com/wallacesilva/timespeaker/"
 repository = "https://github.com/wallacesilva/timespeaker/"
 documentation = "https://github.com/wallacesilva/timespeaker/"
 
+[tool.poetry.scripts]
+timespeaker = "timespeaker.main:cli"
+
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/wallacesilva/timespeaker/issues"
 
