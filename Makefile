@@ -35,7 +35,7 @@ install:
 	@echo "\e[0;92mIstall finished\e[0m"
 
 run-default:
-	poetry run python -m timespeaker start --speaker=gtts
+	poetry run timespeaker start --speaker=gtts --player=mpv
 
 configure-systemd:
 	sudo pip3 install timespeaker
