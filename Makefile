@@ -30,6 +30,9 @@ clean-pyc:
 clean-test:
 	rm -f .coverage
 
+build:
+	poetry build
+
 install:
 	poetry install
 	@echo "\e[0;92mIstall finished\e[0m"
