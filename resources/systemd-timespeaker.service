@@ -3,8 +3,7 @@ Description=Announce the time every hour similar to Mac OS X. Say the Time using
 
 [Service]
 Type=simple
-# ExecStart=/usr/bin/timespeaker.py
-ExecStart=python3 -m timespeaker start
+ExecStart=timespeaker start --speaker gtts --player mpv
 
 [Install]
 WantedBy=multi-user.target
