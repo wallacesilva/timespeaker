@@ -16,11 +16,11 @@ if sys.version_info[0] < 3 and sys.version_info[1] < 6:
 __title__ = "TimeSpeaker"
 __description__ = "Announce the time every hour similar to Mac OS X. Say the Time using Google TTS or espeak."
 __url__ = "https://github.com/wallacesilva/timespeaker"
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 __author__ = "Wallace Silva"
 __author_email__ = "contact@wallacesilva.com"
 __license__ = "MIT License"
-__copyright__ = "Copyright 2020 Wallace Silva"
+__copyright__ = "Copyright 2020-2021 Wallace Silva"
 
 """
 CONSTANTS
@@ -304,5 +304,5 @@ def check_requirements(speaker, player):
     click.echo("Done")
 
 
-if __name__ == "__main__":
-    cli()
+# if __name__ == "__main__":
+#     cli()

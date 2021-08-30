@@ -4,7 +4,7 @@ target-version = ["py38"]
 
 [tool.poetry]
 name = "timespeaker"
-version = "0.1.1"
+version = "0.1.3"
 description = "Announce the time every hour similar to Mac OS X. Say the Time using Google TTS or espeak."
 authors = ["Wallace Silva <contact@wallacesilva.com>"]
 license = "MIT License"
@@ -12,6 +12,9 @@ readme = "README.md"
 homepage = "https://github.com/wallacesilva/timespeaker/"
 repository = "https://github.com/wallacesilva/timespeaker/"
 documentation = "https://github.com/wallacesilva/timespeaker/"
+
+[tool.poetry.scripts]
+timespeaker = "timespeaker.main:cli"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/wallacesilva/timespeaker/issues"
