@@ -20,7 +20,7 @@ __version__ = "0.1.3"
 __author__ = "Wallace Silva"
 __author_email__ = "contact@wallacesilva.com"
 __license__ = "MIT License"
-__copyright__ = "Copyright 2021 Wallace Silva"
+__copyright__ = "Copyright 2020-2021 Wallace Silva"
 
 """
 CONSTANTS
