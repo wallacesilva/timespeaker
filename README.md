@@ -34,29 +34,50 @@ For development
 
 ## Default (Working In Progress)
 
-```
+```bash
 pip install timespeaker
 ```
 
 ## Local
 
+### On Local User
+
 ```bash
 # pyenv shell +3.6.0
+# asdf shell python +3.6.0
+
+# optional (poetry create a virtualenv for you)
 python -m venv .venv 
+
+# install dependencies
 make install
+
+# clean old builds
+make clean
+
+# build package
+make build
+
+# install on local user package (python)
+pip install --user dist/{path_from_last_command}.whl
+```
+
+**Test local install**
+```bash
+timespeaker check --speaker gtts
 ```
 
 # Configure
 
 ## AutoStart (Working In Progress)
 
-```
+```bash
 make configure-autostart
 ```
 
 ## i3 (Working In Progress)
 
-```
+```bash
 make configure-i3
 ```
 
@@ -64,19 +85,19 @@ make configure-i3
 
 Coming Soon
 
-```
+```bash
 sudo make configure-cron
 ```
 
 ## Systemd (Working In Progress)
 
-```
+```bash
 sudo make configure-systemd
 ```
 
 ## Remove configurations
 
-```
+```bash
 # Systemd
 sudo make remove-systemd
 
@@ -93,24 +114,26 @@ make remove-autostart
 # Usage
 
 Default usage using gtts to speak and saving in `/tmp/timespeaker/`
-```
-python -m timespeaker start
 
-# OR if configured
+```bash
+# after make install (or poetry install)
+poetry run timespeaker start
 
+# OR if configured (local user or via pip install timespeaker)
 timespeaker start
 ```
 
 Custom command:
-```
-python -m timespeaker start --speaker=pyttsx3 --path-folder=/tmp/timespeaker/
+
+```bash
+poetry run timespeaker start --speaker=pyttsx3 --player=vlc --path-folder=/tmp/timespeaker/
 ```
 
 # Development
 
-Using virtualenv:
+Using virtualenv (python venv):
 
-```
+```bash
 # create virtualenv
 # virtualenv .venv [-p /path/to/python3.6+] # require virtualenv
 python -m venv .venv
@@ -123,19 +146,21 @@ deactivate
 ```
 
 Dev install (poetry required)
-```
+
+```bash
 poetry install
 ```
 
 See more commands with
-```
+
+```bash
 make help
 ```
 
 # Tests
 
-```
-make tests 
+```bash
+make test
 ```
 
 # License
