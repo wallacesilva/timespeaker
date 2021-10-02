@@ -186,7 +186,13 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
             hour = time_now.hour
             minute = time_now.minute
 
-            hour_speak = str(hour) + " hours" if hour > 1 else " hour"
+            if hour == 0:
+                hour_speak = "midnight"
+            elif hour == 1:
+                hour_speak = "one hour"
+            else:
+                hour_speak = str(hour) + " hours"
+
             if minute > 0:
                 hour_speak = hour_speak + " and " + str(minute) + " minutes"
             hour_file = hour_speak.replace(" ", "_") + ".mp3"
