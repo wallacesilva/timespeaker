@@ -131,7 +131,7 @@ poetry run timespeaker start --speaker=pyttsx3 --player=vlc --path-folder=/tmp/t
 
 ## How to check sounds
 
-This speakes sounds each 2 second from **midnight** to **23 hours**.
+This speakes sound each 2 second from **midnight** to **23 hours**.
 
 ```bash
 poetry run timespeaker check-hours-sound gtts
