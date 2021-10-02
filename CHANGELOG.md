@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.4
+
+- Fix speaker to hour 0 (midnight) and 1 hour (1am)
+- Add function to test/check speaker of hours sound
+- Update README.md with new command to check speaker
+
+## 0.1.3
+
+- Improve Makefile
+- Update README.md
+- Fix `pip install timespeaker`
+
 ## 0.1.2
 
 - Add envvars to PERIOD and DEBUG
