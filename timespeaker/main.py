@@ -186,7 +186,13 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
             hour = time_now.hour
             minute = time_now.minute
 
-            hour_speak = str(hour) + " hours" if hour > 1 else " hour"
+            if hour == 0:
+                hour_speak = "midnight"
+            elif hour == 1:
+                hour_speak = "one hour"
+            else:
+                hour_speak = str(hour) + " hours"
+
             if minute > 0:
                 hour_speak = hour_speak + " and " + str(minute) + " minutes"
             hour_file = hour_speak.replace(" ", "_") + ".mp3"
@@ -304,5 +310,40 @@ def check_requirements(speaker, player):
     click.echo("Done")
 
 
-# if __name__ == "__main__":
-#     cli()
+@cli.command("check-hours-sound")
+@click.argument(
+    "speaker",
+    type=click.Choice(["gtts", "pyttsx3"]),
+)
+@click.option("--player", default="mpv", help="Choose player command. Eg. mpv, vlc")
+def check_hours_sound(speaker, player):
+    """
+    Check hours sound to TimeSpeaker
+    """
+    path_folder = "/tmp/timespeaker/"
+    debug = True
+
+    for hour in range(0, 24):
+
+        if hour == 0:
+            hour_speak = "midnight"
+        elif hour == 1:
+            hour_speak = "one hour"
+        else:
+            hour_speak = str(hour) + " hours"
+
+        hour_file = hour_speak.replace(" ", "_") + ".mp3"
+        hour_file_abspath = os.path.join(path_folder, hour_file)
+
+        if not os.path.exists(hour_file_abspath):
+            # TODO: change to logging
+            if debug:
+                click.echo("Creating file {}".format(hour_file_abspath))
+            speaker_save(speaker, hour_speak, hour_file_abspath, debug=debug)
+
+        click.echo("Playing file {} with text {}".format(hour_file_abspath, hour_speak))
+        play_sound(hour_file_abspath, player)
+
+        time.sleep(2)
+
+    click.echo("Done")
