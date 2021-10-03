@@ -20,8 +20,8 @@ For development
 - Use python: [threading.Timer](https://docs.python.org/3/library/threading.html?highlight=timer#threading.Timer)
 - Create tests
 - Add system tray (opcional) by cli
-- Update/Fix to PyPi (`pip install timespeaker`)
-- Move Makefile to Parent
+- ~~Update/Fix to PyPi (`pip install timespeaker`)~~
+- ~~Move Makefile to Parent~~
 - Configure PULL_REQUESTS AND ISSUES template
 - Configure lint
 - Configure github actions (or circleci)
