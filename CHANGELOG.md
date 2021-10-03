@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+- Fix when run at midnight (0 hour)
+
 ## 0.1.4
 
 - Fix speaker to hour 0 (midnight) and 1 hour (1am)
