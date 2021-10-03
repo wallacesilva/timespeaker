@@ -81,6 +81,10 @@ class SpeakerSavePytts3NotSavedError(Exception):
     pass
 
 
+class PeriodNotFound(Exception):
+    pass
+
+
 """
 FUNCTIONS
 """
@@ -170,6 +174,8 @@ def validate_period(name: str, time_now: datetime, last_time_run: datetime, debu
 
     if name in rules:
         return rules[name]
+    else:
+        raise PeriodNotFound()
 
 
 def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
@@ -185,9 +191,11 @@ def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
 
         time_now = time_now = datetime.now()
 
-        if validate_period(
+        is_valid = validate_period(
             name=TIMESPEAKER_PERIOD, time_now=time_now, last_time_run=last_time_run, debug=debug
-        ):
+        )
+
+        if is_valid:
             hour = time_now.hour
             minute = time_now.minute
 
