@@ -173,7 +173,12 @@ def validate_period(name: str, time_now: datetime, last_time_run: datetime, debu
 
 
 def start_loop(speaker: str, player: str, path_folder: str, debug: bool):
-    last_time_run = datetime.now().replace(hour=datetime.now().hour - 1)
+    hour_replace = datetime.now().hour - 1
+    minute_replace = datetime.now().minute
+    if hour_replace < 1:
+        hour_replace = 0
+        minute_replace = 0
+    last_time_run = datetime.now().replace(hour=hour_replace, minute=minute_replace)
     Path(path_folder).mkdir(mode=0o755, parents=True, exist_ok=True)
 
     while True:
