@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6
+
+- Raise error when period to validate is invalid
+- Add Tests to validate_period
+
 ## 0.1.5
 
 - Fix when run at midnight (0 hour)
