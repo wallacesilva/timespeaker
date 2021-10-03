@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=TimeSpeaker
-Exec=python -m timespeaker start
+Exec=timespeaker start --speaker=gtts
 StartupNotify=false
 Terminal=false
