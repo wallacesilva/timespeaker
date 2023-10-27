@@ -35,7 +35,7 @@ build:
 
 install:
 	poetry install
-	@echo "\e[0;92mIstall finished\e[0m"
+	@echo "\e[0;92mInstall finished\e[0m"
 
 run-default:
 	poetry run timespeaker start --speaker=gtts --player=mpv
