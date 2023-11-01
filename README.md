@@ -2,6 +2,8 @@
 
 Announce the time every hour similar to Mac OS X. Say the Time using Google TTS or espeak.
 
+<center><img src="https://raw.githubusercontent.com/wallacesilva/timespeaker/main/resources/timespeaker-logo.png" alt="Timespeaker - Logo" height="150" /></center>
+
 # Requirements
 
 - python3.6+
