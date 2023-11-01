@@ -24,6 +24,7 @@ For development
 - ~~Move Makefile to Parent~~
 - Configure PULL_REQUESTS AND ISSUES template
 - Configure lint
+- Configure formatter
 - Configure github actions (or circleci)
 - Test i3 configs
 - Add support to Cron
